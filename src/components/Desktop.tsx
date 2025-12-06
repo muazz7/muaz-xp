@@ -41,11 +41,11 @@ const Desktop: React.FC = () => {
 
         const isMobile = window.innerWidth < 768;
         const defaultSize = isMobile
-            ? { width: window.innerWidth * 0.94, height: window.innerHeight * 0.8 }
+            ? { width: window.innerWidth * 0.9, height: window.innerHeight * 0.75 }
             : { width: 600, height: 450 };
 
         const defaultPosition = isMobile
-            ? { x: window.innerWidth * 0.03, y: 20 } // Centered horizontally, slightly down
+            ? { x: 0, y: 10 } // Centered horizontally (handled by flex/grid usually, but here absolute), slightly down
             : { x: 100 + (windows.length * 20), y: 100 + (windows.length * 20) };
 
         addWindow({
@@ -63,7 +63,7 @@ const Desktop: React.FC = () => {
     };
 
     return (
-        <div className="w-full h-screen overflow-hidden bg-black relative">
+        <div className="w-full h-full overflow-hidden bg-black relative">
             <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${wallpaper})` }}
