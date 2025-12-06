@@ -21,15 +21,15 @@ const LoginScreen: React.FC = () => {
             </div>
 
             {/* Center Content */}
-            <div className="flex items-center gap-8 z-10">
+            <div className="flex flex-wrap justify-center items-center gap-8 z-10 max-w-[90%]">
                 {/* Left Side */}
-                <div className="text-right border-r border-white/30 pr-8 py-4">
-                    <h1 className="text-white text-5xl font-bold font-tahoma drop-shadow-lg mb-2">Windows <span className="text-xl align-top">XP</span></h1>
-                    <p className="text-white/80 text-xl font-tahoma">To begin, click your user name</p>
+                <div className="text-center md:text-right md:border-r border-white/30 md:pr-8 py-4 w-full md:w-auto">
+                    <h1 className="text-white text-4xl md:text-5xl font-bold font-tahoma drop-shadow-lg mb-2">Windows <span className="text-xl align-top">XP</span></h1>
+                    <p className="text-white/80 text-lg md:text-xl font-tahoma">To begin, click your user name</p>
                 </div>
 
                 {/* Right Side - User */}
-                <div className="pl-4">
+                <div className="md:pl-4">
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -37,7 +37,7 @@ const LoginScreen: React.FC = () => {
                         onClick={() => setSystemState('DESKTOP')}
                     >
                         <div className="relative">
-                            <div className="w-24 h-24 rounded border-4 border-[#FFCC00] overflow-hidden bg-white shadow-lg group-hover:border-[#FFDD33] transition-colors">
+                            <div className="w-20 h-20 md:w-24 md:h-24 rounded border-4 border-[#FFCC00] overflow-hidden bg-white shadow-lg group-hover:border-[#FFDD33] transition-colors">
                                 <img
                                     src={profileImg}
                                     alt="User"
@@ -45,9 +45,9 @@ const LoginScreen: React.FC = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-col">
-                            <span className="text-white text-2xl font-tahoma font-bold group-hover:underline drop-shadow-md">MUAZ</span>
-                            <span className="text-white/70 text-sm font-tahoma">Software Engineer</span>
+                        <div className="flex flex-col text-left">
+                            <span className="text-white text-xl md:text-2xl font-tahoma font-bold group-hover:underline drop-shadow-md">MUAZ</span>
+                            <span className="text-white/70 text-xs md:text-sm font-tahoma">Software Engineer</span>
                         </div>
                     </motion.div>
                 </div>

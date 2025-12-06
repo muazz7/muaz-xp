@@ -41,11 +41,11 @@ const Desktop: React.FC = () => {
 
         const isMobile = window.innerWidth < 768;
         const defaultSize = isMobile
-            ? { width: window.innerWidth * 0.9, height: window.innerHeight * 0.7 }
+            ? { width: window.innerWidth * 0.94, height: window.innerHeight * 0.8 }
             : { width: 600, height: 450 };
 
         const defaultPosition = isMobile
-            ? { x: window.innerWidth * 0.05, y: window.innerHeight * 0.1 } // Center-ish on mobile
+            ? { x: window.innerWidth * 0.03, y: 20 } // Centered horizontally, slightly down
             : { x: 100 + (windows.length * 20), y: 100 + (windows.length * 20) };
 
         addWindow({
@@ -56,7 +56,7 @@ const Desktop: React.FC = () => {
             isOpen: true,
             isMinimized: false,
             isMaximized: false,
-            zIndex: 1,
+            zIndex: 50, // Higher z-index for windows
             position: defaultPosition,
             size: defaultSize
         });
@@ -70,8 +70,8 @@ const Desktop: React.FC = () => {
             >
                 {/* Perspective Text Removed */}
 
-                {/* Desktop Icons Grid */}
-                <div className="absolute top-4 left-4 flex flex-col gap-2 md:gap-4 z-10">
+                {/* Desktop Icons Grid - Lower Z-Index */}
+                <div className="absolute top-4 left-4 flex flex-col gap-2 md:gap-4 z-0">
                     <DesktopIcon
                         id="about"
                         title="About Me"
@@ -104,8 +104,8 @@ const Desktop: React.FC = () => {
                     />
                 </div>
 
-                {/* Windows Layer */}
-                <div className="absolute inset-0 pointer-events-none">
+                {/* Windows Layer - Higher Z-Index */}
+                <div className="absolute inset-0 pointer-events-none z-50">
                     {windows.map((window) => (
                         <div key={window.id} className="pointer-events-auto">
                             <WindowFrame window={window} />
@@ -113,7 +113,10 @@ const Desktop: React.FC = () => {
                     ))}
                 </div>
 
-                <Taskbar />
+                {/* Taskbar - Highest Z-Index */}
+                <div className="absolute bottom-0 w-full z-[100]">
+                    <Taskbar />
+                </div>
             </div>
         </div>
     );

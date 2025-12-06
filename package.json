@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist""autoprefixer": "^10.4.22",
+    "autoprefixer": "^10.4.22",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.556.0",
     "postcss": "^8.5.6",

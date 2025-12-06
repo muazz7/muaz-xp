@@ -20,7 +20,9 @@ const App: React.FC = () => {
   console.log('App component rendering');
   return (
     <OSProvider>
-      <OSManager />
+      <div className="fixed inset-0 w-full h-[100dvh] overflow-hidden">
+        <OSManager />
+      </div>
     </OSProvider>
   );
 };
