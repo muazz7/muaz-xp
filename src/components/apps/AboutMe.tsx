@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Twitter } from 'lucide-react';
+import { Instagram, Twitter, Facebook, MessageCircle } from 'lucide-react';
 import profileImg from '../../assets/profile.jpg';
 
 const AboutMe: React.FC = () => {
@@ -35,6 +35,24 @@ const AboutMe: React.FC = () => {
                     >
                         <Twitter size={16} />
                         X (Twitter)
+                    </a>
+                    <a
+                        href="https://www.facebook.com/share/1D9BVWAzaD/?mibextid=wwXIfr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-blue-600 hover:underline"
+                    >
+                        <Facebook size={16} />
+                        Facebook
+                    </a>
+                    <a
+                        href="http://wa.me/+8801741885952"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-sm text-blue-600 hover:underline"
+                    >
+                        <MessageCircle size={16} />
+                        WhatsApp
                     </a>
                 </div>
             </div>
