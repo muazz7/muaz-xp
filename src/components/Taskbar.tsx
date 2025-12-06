@@ -40,7 +40,7 @@ const Taskbar: React.FC = () => {
     return (
         <>
             {isStartOpen && (
-                <div ref={startMenuRef} className="absolute bottom-0 left-0 z-50" onClick={(e) => e.stopPropagation()}>
+                <div ref={startMenuRef} className="absolute bottom-0 left-0 z-[60]" onClick={(e) => e.stopPropagation()}>
                     <StartMenu onClose={() => setIsStartOpen(false)} />
                 </div>
             )}
@@ -49,12 +49,9 @@ const Taskbar: React.FC = () => {
                 {/* Start Button */}
                 <button
                     ref={startButtonRef}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setIsStartOpen(!isStartOpen);
-                    }}
+                    onClick={() => setIsStartOpen(!isStartOpen)}
                     className={`
-            h-full px-2 flex items-center gap-1 rounded-r-xl transition-colors
+            h-full px-2 flex items-center gap-1 rounded-r-xl transition-colors touch-manipulation
             ${isStartOpen ? 'bg-[#184223] shadow-inner' : 'bg-gradient-to-b from-[#3C8D4D] to-[#2E6E3A] hover:brightness-110'}
             shadow-[inset_0_1px_0_rgba(255,255,255,0.3)]
           `}
