@@ -7,28 +7,52 @@ const Taskbar: React.FC = () => {
     const { windows, activeWindowId, focusWindow, minimizeWindow } = useOS();
     const [isStartOpen, setIsStartOpen] = useState(false);
     const [time, setTime] = useState(new Date());
+    const startMenuRef = React.useRef<HTMLDivElement>(null);
+    const startButtonRef = React.useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         const timer = setInterval(() => setTime(new Date()), 1000);
         return () => clearInterval(timer);
     }, []);
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+            if (
+                isStartOpen &&
+                startMenuRef.current &&
+                !startMenuRef.current.contains(event.target as Node) &&
+                startButtonRef.current &&
+                !startButtonRef.current.contains(event.target as Node)
+            ) {
+                setIsStartOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('touchstart', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
+        };
+    }, [isStartOpen]);
+
     return (
         <>
             {isStartOpen && (
-                <div className="absolute bottom-0 left-0 z-50" onClick={(e) => e.stopPropagation()}>
-                    <StartMenu />
+                <div ref={startMenuRef} className="absolute bottom-0 left-0 z-50" onClick={(e) => e.stopPropagation()}>
+                    <StartMenu onClose={() => setIsStartOpen(false)} />
                 </div>
-            )}
-            {/* Overlay to close start menu when clicking outside */}
-            {isStartOpen && (
-                <div className="fixed inset-0 z-40" onClick={() => setIsStartOpen(false)} />
             )}
 
             <div className="absolute bottom-0 w-full h-8 bg-[#245DDA] flex items-center justify-between z-50 border-t border-[#3E80F3]">
                 {/* Start Button */}
                 <button
-                    onClick={() => setIsStartOpen(!isStartOpen)}
+                    ref={startButtonRef}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setIsStartOpen(!isStartOpen);
+                    }}
                     className={`
             h-full px-2 flex items-center gap-1 rounded-r-xl transition-colors
             ${isStartOpen ? 'bg-[#184223] shadow-inner' : 'bg-gradient-to-b from-[#3C8D4D] to-[#2E6E3A] hover:brightness-110'}
