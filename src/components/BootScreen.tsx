@@ -23,7 +23,7 @@ const BootScreen: React.FC = () => {
                         <div className="w-8 h-8 bg-[#FFB900]"></div>
                     </div>
                     <h1 className="text-4xl font-bold tracking-tighter">
-                        MUAZ <span className="font-light">XP</span>
+                        MUAZ <span className="font-light">OS</span>
                     </h1>
                 </div>
 
