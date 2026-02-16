@@ -56,7 +56,8 @@ const Projects: React.FC = () => {
                     <div
                         key={project.id}
                         className="flex flex-col items-center gap-1 group cursor-pointer p-2 hover:bg-blue-50 border border-transparent hover:border-blue-200 rounded select-none"
-                        onDoubleClick={() => handleDoubleClick(project)}
+                        onClick={() => { if (window.innerWidth < 768) handleDoubleClick(project); }}
+                        onDoubleClick={() => { if (window.innerWidth >= 768) handleDoubleClick(project); }}
                     >
                         <Folder className="w-16 h-16 text-yellow-400 fill-yellow-100 drop-shadow-sm" />
                         <span className="text-xs text-center group-hover:text-blue-600">{project.title}</span>
